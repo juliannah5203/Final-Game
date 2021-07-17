@@ -1,6 +1,6 @@
 class Level1 extends Phaser.Scene {
     constructor() {
-        super("playScene3");
+        super("playScene1");
     }
     preload() {
         this.load.audio('bgm','./assets/maze_bgm.wav');
@@ -2456,7 +2456,7 @@ class Level1 extends Phaser.Scene {
                                                                 if (this.card15.appear == 2) {
                                                                     if (this.card16.appear == 2) {
                                                                         this.music.stop();
-                                                                        this.scene.start("playScene4"); 
+                                                                        this.scene.start("playScene2"); 
                                                                     }
                                                                 }
                                                             }

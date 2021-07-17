@@ -50,7 +50,7 @@ class Menu extends Phaser.Scene {
                 gameTimer: 40000,
                 clickTimer: 100
             }
-            this.scene.start("playScene3"); 
+            this.scene.start("playScene1"); 
         }
       
     }

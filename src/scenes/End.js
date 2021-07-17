@@ -1,6 +1,6 @@
 class End extends Phaser.Scene {
     constructor() {
-        super("playScene6");
+        super("endScene");
     }
     preload() {
         this.load.image('end','./assets/end.png');

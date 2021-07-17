@@ -1,21 +1,21 @@
-class Level3 extends Phaser.Scene {
+class Level6 extends Phaser.Scene {
     constructor() {
-        super("playScene3");
+        super("playScene6");
     }
     preload() {
         this.load.audio('bgm','./assets/maze_bgm.wav');
         this.load.image('card','./assets/card back.png');
         this.load.image('card2','./assets/card back2.png');
-        this.load.image('crown','./assets/crown.png');
+        this.load.image('pumpkin','./assets/pumpkin carriage.png');
         this.load.image('mouse','./assets/mouse.png');
         this.load.image('rabbit','./assets/rabbit.png');
         this.load.image('horse','./assets/horse.png');
         this.load.image('bird','./assets/bird.png');
         this.load.image('magic','./assets/magic stick.png');
-        this.load.image('level3','./assets/level3.png');
+        this.load.image('level1','./assets/level1.png');
     }
     create() {
-        this.back = this.add.tileSprite(0, 0, 640, 640, 'level3').setOrigin(0, 0);
+        this.back = this.add.tileSprite(0, 0, 640, 640, 'level1').setOrigin(0, 0);
         //this.add.rectangle(0, 0, game.config.width, game.config.height, 0x99ffcc).setOrigin(0, 0);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         this.music = this.sound.add('bgm', {
@@ -53,7 +53,7 @@ class Level3 extends Phaser.Scene {
             //this.score += 20;
         //}
         
-        this.crown = this.add.sprite(game.config.width/2, game.config.height/2,'crown');
+        this.pumpkin = this.add.sprite(game.config.width/2, game.config.height/2,'pumpkin');
         /*this.cardA = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 - 157.5,'mouse').setInteractive();
         this.cardB = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 - 157.5,'rabbit').setInteractive();
         this.cardC = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 - 157.5,'horse').setInteractive();
@@ -87,22 +87,22 @@ class Level3 extends Phaser.Scene {
         this.card15 = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 + 157.5,'card').setInteractive();
         this.card16 = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 + 157.5,'card').setInteractive();*/
         
-        this.card01 = new Card(this, game.config.width/2 - 105, game.config.height/2 - 157.5,'bird', 0, 1, 1).setOrigin(0,0);
+        this.card01 = new Card(this, game.config.width/2 - 105, game.config.height/2 - 157.5,'mouse', 0, 1, 1).setOrigin(0,0);
         this.card02 = new Card(this, game.config.width/2, game.config.height/2 - 157.5,'rabbit', 0, 2, 1).setOrigin(0,0);
-        this.card03 = new Card(this, game.config.width/2 - 210, game.config.height/2 - 157.5,'mouse', 0, 3, 1).setOrigin(0,0);
+        this.card03 = new Card(this, game.config.width/2 - 210, game.config.height/2 - 157.5,'horse', 0, 3, 1).setOrigin(0,0);
         this.card04 = new Card(this, game.config.width/2 + 105, game.config.height/2 - 157.5,'mouse', 0, 1, 1).setOrigin(0,0);
-        this.card05 = new Card(this, game.config.width/2 - 105, game.config.height/2 - 52.5,'horse', 0, 4, 1).setOrigin(0,0);
-        this.card06 = new Card(this, game.config.width/2, game.config.height/2 - 52.5,'mouse', 0, 2, 1).setOrigin(0,0);
-        this.card07 = new Card(this, game.config.width/2 - 210, game.config.height/2 - 52.5,'rabbit', 0, 1, 1).setOrigin(0,0);
-        this.card08 = new Card(this, game.config.width/2 + 105, game.config.height/2 - 52.5,'bird', 0, 3, 1).setOrigin(0,0);
-        this.card09 = new Card(this, game.config.width/2 - 105, game.config.height/2 + 52.5,'horse', 0, 2, 1).setOrigin(0,0);
-        this.card010 = new Card(this, game.config.width/2, game.config.height/2 + 52.5,'rabbit', 0, 4, 1).setOrigin(0,0);
+        this.card05 = new Card(this, game.config.width/2 - 105, game.config.height/2 - 52.5,'bird', 0, 4, 1).setOrigin(0,0);
+        this.card06 = new Card(this, game.config.width/2, game.config.height/2 - 52.5,'rabbit', 0, 2, 1).setOrigin(0,0);
+        this.card07 = new Card(this, game.config.width/2 - 210, game.config.height/2 - 52.5,'mouse', 0, 1, 1).setOrigin(0,0);
+        this.card08 = new Card(this, game.config.width/2 + 105, game.config.height/2 - 52.5,'horse', 0, 3, 1).setOrigin(0,0);
+        this.card09 = new Card(this, game.config.width/2 - 105, game.config.height/2 + 52.5,'rabbit', 0, 2, 1).setOrigin(0,0);
+        this.card010 = new Card(this, game.config.width/2, game.config.height/2 + 52.5,'bird', 0, 4, 1).setOrigin(0,0);
         this.card011 = new Card(this, game.config.width/2 - 210, game.config.height/2 + 52.5,'bird', 0, 4, 1).setOrigin(0,0);
-        this.card012 = new Card(this, game.config.width/2 + 105, game.config.height/2 + 52.5,'horse', 0, 1, 1).setOrigin(0,0);
-        this.card013 = new Card(this, game.config.width/2 - 105, game.config.height/2 + 157.5,'mouse', 0, 3, 1).setOrigin(0,0);
-        this.card014 = new Card(this, game.config.width/2, game.config.height/2 + 157.5,'bird', 0, 2, 1).setOrigin(0,0);
-        this.card015 = new Card(this, game.config.width/2 - 210, game.config.height/2 + 157.5,'horse', 0, 4, 1).setOrigin(0,0);
-        this.card016 = new Card(this, game.config.width/2 + 105, game.config.height/2 + 157.5,'rabbit', 0, 3, 1).setOrigin(0,0);
+        this.card012 = new Card(this, game.config.width/2 + 105, game.config.height/2 + 52.5,'mouse', 0, 1, 1).setOrigin(0,0);
+        this.card013 = new Card(this, game.config.width/2 - 105, game.config.height/2 + 157.5,'horse', 0, 3, 1).setOrigin(0,0);
+        this.card014 = new Card(this, game.config.width/2, game.config.height/2 + 157.5,'rabbit', 0, 2, 1).setOrigin(0,0);
+        this.card015 = new Card(this, game.config.width/2 - 210, game.config.height/2 + 157.5,'bird', 0, 4, 1).setOrigin(0,0);
+        this.card016 = new Card(this, game.config.width/2 + 105, game.config.height/2 + 157.5,'horse', 0, 3, 1).setOrigin(0,0);
         this.card1 = new Card(this, game.config.width/2 - 105, game.config.height/2 - 157.5,'card', 0, 1, 1).setOrigin(0,0);
         this.card2 = new Card(this, game.config.width/2, game.config.height/2 - 157.5,'card', 0, 2, 1).setOrigin(0,0);
         this.card3 = new Card(this, game.config.width/2 - 210, game.config.height/2 - 157.5,'card', 0, 3, 1).setOrigin(0,0);
@@ -2456,7 +2456,7 @@ class Level3 extends Phaser.Scene {
                                                                 if (this.card15.appear == 2) {
                                                                     if (this.card16.appear == 2) {
                                                                         this.music.stop();
-                                                                        this.scene.start("playScene4"); 
+                                                                        this.scene.start("endScene"); 
                                                                     }
                                                                 }
                                                             }
