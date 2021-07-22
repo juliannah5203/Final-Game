@@ -1,6 +1,10 @@
+
 class Level1 extends Phaser.Scene {
     constructor() {
         super("playScene1");
+        // this.timeLimit = 40; // timeLimit for countdown in seconds
+        // this.timeOver = false; // set to false at start
+        // this.timeText; // display time remaining
     }
     preload() {
         this.load.audio('bgm','./assets/maze_bgm.wav');
@@ -14,7 +18,10 @@ class Level1 extends Phaser.Scene {
         this.load.image('magic','./assets/magic stick.png');
         this.load.image('level1','./assets/level1.png');
     }
+  
     create() {
+        
+
         this.back = this.add.tileSprite(0, 0, 640, 640, 'level1').setOrigin(0, 0);
         //this.add.rectangle(0, 0, game.config.width, game.config.height, 0x99ffcc).setOrigin(0, 0);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
@@ -36,11 +43,18 @@ class Level1 extends Phaser.Scene {
             },
             fixedWidth: 100
         }
+        
         //if (game.settings.players == 2) {
             //scoreConfig.color = '#7FA8CF';
         //}
         //this.scoreLeft = this.add.text(game.config.width/20, game.config.height / 30, this.score, scoreConfig);
         scoreConfig.fixedWidth = 0;
+
+
+        // this.startTime = this.time.now;
+        // this.timeRight = this.add.text(200, 200, Math.floor((this.time.now - this.startTime)/1000), scoreConfig).setDepth(20);
+        // this.timeRight.text = Math.floor((this.time.now - this.startTime)/1000);
+
         //this.text2 = this.add.text(game.config.width/20, game.config.height / 30, 'Left Button was released', scoreConfig);
         //this.input.mouse.disableContextMenu();
         //this.pointer = this.input.activePointer;
@@ -128,19 +142,33 @@ class Level1 extends Phaser.Scene {
         this.input.on('gameobjectdown',this.onObjectClicked);
         //this.score+=20;
         //this.scoreLeft.text = this.score;
+    
+        // this.timeText = this.add.text(200, 200, '', { fontSize: '20px', fill: '#ffffff' });
+        // this.timeText.fixedToCamera = true;
+
+
+        this.startTime = new Date();
+        this.totalTime = 40;
+        this.timeElap = 0;
+        this.createTimer();
+        this.showGameTimer = this.time.addEvent({ delay: 10, callback: this.updateTimer(), callbackScope: this, loop: true });
         this.gameOver = false;
         this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
             this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart', scoreConfig).setOrigin(0.5);
+
             this.gameOver = true;
         }, null, this);
     }
+
     /*clicking(){
         this.score += 20;
     }*/
     onObjectClicked(pointer,gameObject) {
         this.limit+=1;
     }
+  
+    
     update() {
         if(Phaser.Input.Keyboard.JustDown(keyR)) {
             this.music.stop();
@@ -151,7 +179,14 @@ class Level1 extends Phaser.Scene {
         //if (this.pointer.isDown) {
             //this.score += 20;
         //}
+        // if(!this.gameOver){
+        //     this.displayTimeRemaining();
+        // }
+        if(!this.gameOver){
+            this.updateTimer();
+        }
         if(!this.gameOver) {
+            
             if(game.input.mousePointer.buttons == 1) {
                 if(this.checkCollision(this.magic, this.card1)) {
                     this.card1.update();
@@ -202,7 +237,7 @@ class Level1 extends Phaser.Scene {
                     this.card16.update();
                 }
             }
-
+           
             // card1
 
             if(this.card1.appear == 0) {
@@ -2474,6 +2509,72 @@ class Level1 extends Phaser.Scene {
             }
         }
     }
+
+    createTimer(){
+
+        var me = this;
+        let timerConfig = {
+            fontFamily: 'Comic Sans MS',
+            fontSize: '36px',
+            backgroundColor: '#e1f2e8',
+            color: '#D43F4D',
+            align: 'center',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 70
+        }
+
+        me.timeLabel = me.add.text(20, 110, "00", timerConfig); 
+   
+
+    }
+    updateTimer(){
+
+        var me = this;
+
+        var currentTime = new Date();
+        var timeDifference = me.startTime.getTime() - currentTime.getTime();
+
+        //Time elapsed in seconds
+        me.timeElapsed = Math.abs(timeDifference / 1000);
+
+
+        //Time remaining in seconds
+        var timeRemaining = me.totalTime - me.timeElapsed; 
+        if(me.timeElapsed > me.totalTime){
+                this.gameOver = true;
+        }
+
+        //Convert seconds into minutes and seconds
+        var seconds = Math.floor(timeRemaining);
+
+        //Display minutes, add a 0 to the start if less than 10
+
+        //Display seconds, add a 0 to the start if less than 10
+
+        me.timeLabel.text = seconds;
+
+
+    }
+    // displayTimeRemaining() {
+        
+    //     var time = Math.floor(this.totalElapsedSeconds());
+    //     var timeLeft = this.timeLimit - time;
+    
+    //     // detect when countdown is over
+    //     if (timeLeft <= 0) {
+    //         timeLeft = 0;
+    //         this.timeOver = true;
+    //     }
+    
+    //     var sec = Math.floor(timeLeft);
+    
+        
+        
+    //     this.timeText.text = sec;
+    // }
     checkCollision(rocket, ship) {
         // simple AABB checking
         

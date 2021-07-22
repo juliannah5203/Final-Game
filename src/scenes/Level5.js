@@ -128,6 +128,12 @@ class Level5 extends Phaser.Scene {
         this.input.on('gameobjectdown',this.onObjectClicked);
         //this.score+=20;
         //this.scoreLeft.text = this.score;
+
+        this.startTime = new Date();
+        this.totalTime = 40;
+        this.timeElap = 0;
+        this.createTimer();
+        this.showGameTimer = this.time.addEvent({ delay: 10, callback: this.updateTimer(), callbackScope: this, loop: true });
         this.gameOver = false;
         this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
             this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
@@ -151,6 +157,9 @@ class Level5 extends Phaser.Scene {
         //if (this.pointer.isDown) {
             //this.score += 20;
         //}
+        if(!this.gameOver){
+            this.updateTimer();
+        }
         if(!this.gameOver) {
             if(game.input.mousePointer.buttons == 1) {
                 if(this.checkCollision(this.magic, this.card1)) {
@@ -2473,6 +2482,54 @@ class Level5 extends Phaser.Scene {
                 }
             }
         }
+    }
+    createTimer(){
+
+        var me = this;
+        let timerConfig = {
+            fontFamily: 'Comic Sans MS',
+            fontSize: '36px',
+            backgroundColor: '#e1f2e8',
+            color: '#D43F4D',
+            align: 'center',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 70
+        }
+
+        me.timeLabel = me.add.text(20, 110, "00", timerConfig); 
+   
+
+    }
+    updateTimer(){
+
+        var me = this;
+
+        var currentTime = new Date();
+        var timeDifference = me.startTime.getTime() - currentTime.getTime();
+
+        //Time elapsed in seconds
+        me.timeElapsed = Math.abs(timeDifference / 1000);
+
+
+        //Time remaining in seconds
+        var timeRemaining = me.totalTime - me.timeElapsed; 
+        if(me.timeElapsed > me.totalTime){
+                this.gameOver = true;
+        }
+
+        //Convert seconds into minutes and seconds
+        var seconds = Math.floor(timeRemaining);
+
+        //Display minutes, add a 0 to the start if less than 10
+
+        //Display seconds, add a 0 to the start if less than 10
+
+        me.timeLabel.text = seconds;
+
+
     }
     checkCollision(rocket, ship) {
         // simple AABB checking
