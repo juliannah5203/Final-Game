@@ -1,14 +1,14 @@
 
 class Level1 extends Phaser.Scene {
     constructor() {
-        super("playScene1");
-    
+        super("playScene3");
     }
     preload() {
         this.load.audio('bgm','./assets/maze_bgm.wav');
+        this.load.audio('click','./assets/click.wav');
         this.load.image('card','./assets/card back.png');
         this.load.image('card2','./assets/card back2.png');
-        this.load.image('pumpkin','./assets/pumpkin carriage.png');
+        this.load.image('carriage','./assets/pumpkin carriage.png');
         this.load.image('mouse','./assets/mouse.png');
         this.load.image('rabbit','./assets/rabbit.png');
         this.load.image('horse','./assets/horse.png');
@@ -16,10 +16,7 @@ class Level1 extends Phaser.Scene {
         this.load.image('magic','./assets/magic stick.png');
         this.load.image('level1','./assets/level1.png');
     }
-  
     create() {
-        
-
         this.back = this.add.tileSprite(0, 0, 640, 640, 'level1').setOrigin(0, 0);
         //this.add.rectangle(0, 0, game.config.width, game.config.height, 0x99ffcc).setOrigin(0, 0);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
@@ -41,16 +38,56 @@ class Level1 extends Phaser.Scene {
             },
             fixedWidth: 100
         }
-        
-
+        //if (game.settings.players == 2) {
+            //scoreConfig.color = '#7FA8CF';
+        //}
+        //this.scoreLeft = this.add.text(game.config.width/20, game.config.height / 30, this.score, scoreConfig);
         scoreConfig.fixedWidth = 0;
-
-
- 
+        //this.text2 = this.add.text(game.config.width/20, game.config.height / 30, 'Left Button was released', scoreConfig);
+        //this.input.mouse.disableContextMenu();
+        //this.pointer = this.input.activePointer;
+        /*this.input.on('pointerup', function (pointer) {
+            if (pointer.leftButtonReleased()) {
+                this.text2 = this.add.text(game.config.width/20, game.config.height / 30, 'Left Button was released', scoreConfig);
+            }
+        });*/
+        //if (this.pointer.isDown) {
+            //this.score += 20;
+        //}
         
-        this.pumpkin = this.add.sprite(game.config.width/2, game.config.height/2,'pumpkin');
-   
-  
+        this.pumpkin = this.add.sprite(game.config.width/2, game.config.height/2,'carriage');
+        /*this.cardA = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 - 157.5,'mouse').setInteractive();
+        this.cardB = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 - 157.5,'rabbit').setInteractive();
+        this.cardC = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 - 157.5,'horse').setInteractive();
+        this.cardD = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 - 157.5,'mouse').setInteractive();
+        this.cardE = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 - 52.5,'bird').setInteractive();
+        this.cardF = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 - 52.5,'rabbit').setInteractive();
+        this.cardG = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 - 52.5,'mouse').setInteractive();
+        this.cardH = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 - 52.5,'horse').setInteractive();
+        this.cardI = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 + 52.5,'rabbit').setInteractive();
+        this.cardJ = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 + 52.5,'bird').setInteractive();
+        this.cardK = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 + 52.5,'bird').setInteractive();
+        this.cardL = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 + 52.5,'mouse').setInteractive();
+        this.cardM = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 + 157.5,'horse').setInteractive();
+        this.cardN = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 + 157.5,'rabbit').setInteractive();
+        this.cardO = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 + 157.5,'bird').setInteractive();
+        this.cardP = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 + 157.5,'horse').setInteractive();
+        this.card = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 - 157.5,'card').setInteractive();
+        this.card2 = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 - 157.5,'card').setInteractive();
+        this.card3 = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 - 157.5,'card').setInteractive();
+        this.card4 = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 - 157.5,'card').setInteractive();
+        this.card5 = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 - 52.5,'card').setInteractive();
+        this.card6 = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 - 52.5,'card').setInteractive();
+        this.card7 = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 - 52.5,'card').setInteractive();
+        this.card8 = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 - 52.5,'card').setInteractive();
+        this.card9 = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 + 52.5,'card').setInteractive();
+        this.card10 = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 + 52.5,'card').setInteractive();
+        this.card11 = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 + 52.5,'card').setInteractive();
+        this.card12 = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 + 52.5,'card').setInteractive();
+        this.card13 = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 + 157.5,'card').setInteractive();
+        this.card14 = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 + 157.5,'card').setInteractive();
+        this.card15 = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 + 157.5,'card').setInteractive();
+        this.card16 = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 + 157.5,'card').setInteractive();*/
         
         this.card01 = new Card(this, game.config.width/2 - 105, game.config.height/2 - 157.5,'mouse', 0, 1, 1).setOrigin(0,0);
         this.card02 = new Card(this, game.config.width/2, game.config.height/2 - 157.5,'rabbit', 0, 2, 1).setOrigin(0,0);
@@ -85,11 +122,14 @@ class Level1 extends Phaser.Scene {
         this.card15 = new Card(this, game.config.width/2 - 210, game.config.height/2 + 157.5,'card', 0, 15, 1).setOrigin(0,0);
         this.card16 = new Card(this, game.config.width/2 + 105, game.config.height/2 + 157.5,'card', 0, 16, 1).setOrigin(0,0);
         this.magic = this.add.sprite(game.config.width/2, game.config.height/2,'magic');
-    
+        //click.inputEnabled = true;
+        //click.events.onInputDown.add(clicking,this);
+        //this.click.on('pointerdown', function() {
+            //this.score += 20;
+        //});
         this.input.on('gameobjectdown',this.onObjectClicked);
-      
-
-
+        //this.score+=20;
+        //this.scoreLeft.text = this.score;
         this.startTime = new Date();
         this.totalTime = 40;
         this.timeElap = 0;
@@ -97,32 +137,43 @@ class Level1 extends Phaser.Scene {
         this.showGameTimer = this.time.addEvent({ delay: 10, callback: this.updateTimer(), callbackScope: this, loop: true });
         this.gameOver = false;
         this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
-            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart', scoreConfig).setOrigin(0.5);
-
+            this.add.text(game.config.width/2, game.config.height/2, 'Failed', scoreConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (Space) to Continue', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
-
-
+    /*clicking(){
+        this.score += 20;
+    }*/
     onObjectClicked(pointer,gameObject) {
         this.limit+=1;
     }
-  
-    
     update() {
         if(Phaser.Input.Keyboard.JustDown(keyR)) {
             this.music.stop();
+            this.endsound = this.sound.add('endbgm', {
+                volume: 0.2,
+                loop: false
+            });
+            this.endsound.play();
             this.scene.start("menuScene");
+        }
+        if (this.gameOver) {
+            if(Phaser.Input.Keyboard.JustDown(keySPACE)) {
+                this.music.stop();
+                this.scene.start("playScene4");
+            }
         }
         this.magic.x = game.input.mousePointer.x;
         this.magic.y = game.input.mousePointer.y;
-      
+        //if (this.pointer.isDown) {
+            //this.score += 20;
+        //}
         if(!this.gameOver){
             this.updateTimer();
         }
         if(!this.gameOver) {
-            
             if(game.input.mousePointer.buttons == 1) {
                 if(this.checkCollision(this.magic, this.card1)) {
                     this.card1.update();
@@ -173,7 +224,7 @@ class Level1 extends Phaser.Scene {
                     this.card16.update();
                 }
             }
-           
+
             // card1
 
             if(this.card1.appear == 0) {
@@ -2427,7 +2478,8 @@ class Level1 extends Phaser.Scene {
                                                                 if (this.card15.appear == 2) {
                                                                     if (this.card16.appear == 2) {
                                                                         this.music.stop();
-                                                                        this.scene.start("playScene2"); 
+                                                                        game.settings.car = 1;
+                                                                        this.scene.start("playScene4"); 
                                                                     }
                                                                 }
                                                             }
@@ -2445,7 +2497,6 @@ class Level1 extends Phaser.Scene {
             }
         }
     }
-
     createTimer(){
 
         var me = this;
@@ -2462,7 +2513,7 @@ class Level1 extends Phaser.Scene {
             fixedWidth: 70
         }
 
-        me.timeLabel = me.add.text(20, 110, "00", timerConfig); 
+        me.timeLabel = me.add.text(20, 540, "00", timerConfig); 
    
 
     }
@@ -2494,7 +2545,6 @@ class Level1 extends Phaser.Scene {
 
 
     }
-    
     checkCollision(rocket, ship) {
         // simple AABB checking
         
@@ -2502,6 +2552,11 @@ class Level1 extends Phaser.Scene {
             rocket.x > ship.x && 
             rocket.y < ship.y + ship.height &&
             rocket.y > ship.y) {
+                this.clicksound = this.sound.add('click', {
+                    volume: 0.1,
+                    loop: false
+                });
+                this.clicksound.play();
                 return true;
         }
         else {
