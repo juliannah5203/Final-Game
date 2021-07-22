@@ -2,9 +2,7 @@
 class Level1 extends Phaser.Scene {
     constructor() {
         super("playScene1");
-        // this.timeLimit = 40; // timeLimit for countdown in seconds
-        // this.timeOver = false; // set to false at start
-        // this.timeText; // display time remaining
+    
     }
     preload() {
         this.load.audio('bgm','./assets/maze_bgm.wav');
@@ -44,62 +42,15 @@ class Level1 extends Phaser.Scene {
             fixedWidth: 100
         }
         
-        //if (game.settings.players == 2) {
-            //scoreConfig.color = '#7FA8CF';
-        //}
-        //this.scoreLeft = this.add.text(game.config.width/20, game.config.height / 30, this.score, scoreConfig);
+
         scoreConfig.fixedWidth = 0;
 
 
-        // this.startTime = this.time.now;
-        // this.timeRight = this.add.text(200, 200, Math.floor((this.time.now - this.startTime)/1000), scoreConfig).setDepth(20);
-        // this.timeRight.text = Math.floor((this.time.now - this.startTime)/1000);
-
-        //this.text2 = this.add.text(game.config.width/20, game.config.height / 30, 'Left Button was released', scoreConfig);
-        //this.input.mouse.disableContextMenu();
-        //this.pointer = this.input.activePointer;
-        /*this.input.on('pointerup', function (pointer) {
-            if (pointer.leftButtonReleased()) {
-                this.text2 = this.add.text(game.config.width/20, game.config.height / 30, 'Left Button was released', scoreConfig);
-            }
-        });*/
-        //if (this.pointer.isDown) {
-            //this.score += 20;
-        //}
+ 
         
         this.pumpkin = this.add.sprite(game.config.width/2, game.config.height/2,'pumpkin');
-        /*this.cardA = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 - 157.5,'mouse').setInteractive();
-        this.cardB = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 - 157.5,'rabbit').setInteractive();
-        this.cardC = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 - 157.5,'horse').setInteractive();
-        this.cardD = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 - 157.5,'mouse').setInteractive();
-        this.cardE = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 - 52.5,'bird').setInteractive();
-        this.cardF = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 - 52.5,'rabbit').setInteractive();
-        this.cardG = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 - 52.5,'mouse').setInteractive();
-        this.cardH = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 - 52.5,'horse').setInteractive();
-        this.cardI = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 + 52.5,'rabbit').setInteractive();
-        this.cardJ = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 + 52.5,'bird').setInteractive();
-        this.cardK = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 + 52.5,'bird').setInteractive();
-        this.cardL = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 + 52.5,'mouse').setInteractive();
-        this.cardM = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 + 157.5,'horse').setInteractive();
-        this.cardN = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 + 157.5,'rabbit').setInteractive();
-        this.cardO = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 + 157.5,'bird').setInteractive();
-        this.cardP = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 + 157.5,'horse').setInteractive();
-        this.card = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 - 157.5,'card').setInteractive();
-        this.card2 = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 - 157.5,'card').setInteractive();
-        this.card3 = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 - 157.5,'card').setInteractive();
-        this.card4 = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 - 157.5,'card').setInteractive();
-        this.card5 = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 - 52.5,'card').setInteractive();
-        this.card6 = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 - 52.5,'card').setInteractive();
-        this.card7 = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 - 52.5,'card').setInteractive();
-        this.card8 = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 - 52.5,'card').setInteractive();
-        this.card9 = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 + 52.5,'card').setInteractive();
-        this.card10 = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 + 52.5,'card').setInteractive();
-        this.card11 = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 + 52.5,'card').setInteractive();
-        this.card12 = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 + 52.5,'card').setInteractive();
-        this.card13 = this.add.sprite(game.config.width/2 - 52.5, game.config.height/2 + 157.5,'card').setInteractive();
-        this.card14 = this.add.sprite(game.config.width/2 + 52.5, game.config.height/2 + 157.5,'card').setInteractive();
-        this.card15 = this.add.sprite(game.config.width/2 - 157.5, game.config.height/2 + 157.5,'card').setInteractive();
-        this.card16 = this.add.sprite(game.config.width/2 + 157.5, game.config.height/2 + 157.5,'card').setInteractive();*/
+   
+  
         
         this.card01 = new Card(this, game.config.width/2 - 105, game.config.height/2 - 157.5,'mouse', 0, 1, 1).setOrigin(0,0);
         this.card02 = new Card(this, game.config.width/2, game.config.height/2 - 157.5,'rabbit', 0, 2, 1).setOrigin(0,0);
@@ -134,17 +85,9 @@ class Level1 extends Phaser.Scene {
         this.card15 = new Card(this, game.config.width/2 - 210, game.config.height/2 + 157.5,'card', 0, 15, 1).setOrigin(0,0);
         this.card16 = new Card(this, game.config.width/2 + 105, game.config.height/2 + 157.5,'card', 0, 16, 1).setOrigin(0,0);
         this.magic = this.add.sprite(game.config.width/2, game.config.height/2,'magic');
-        //click.inputEnabled = true;
-        //click.events.onInputDown.add(clicking,this);
-        //this.click.on('pointerdown', function() {
-            //this.score += 20;
-        //});
-        this.input.on('gameobjectdown',this.onObjectClicked);
-        //this.score+=20;
-        //this.scoreLeft.text = this.score;
     
-        // this.timeText = this.add.text(200, 200, '', { fontSize: '20px', fill: '#ffffff' });
-        // this.timeText.fixedToCamera = true;
+        this.input.on('gameobjectdown',this.onObjectClicked);
+      
 
 
         this.startTime = new Date();
@@ -161,9 +104,7 @@ class Level1 extends Phaser.Scene {
         }, null, this);
     }
 
-    /*clicking(){
-        this.score += 20;
-    }*/
+
     onObjectClicked(pointer,gameObject) {
         this.limit+=1;
     }
@@ -176,12 +117,7 @@ class Level1 extends Phaser.Scene {
         }
         this.magic.x = game.input.mousePointer.x;
         this.magic.y = game.input.mousePointer.y;
-        //if (this.pointer.isDown) {
-            //this.score += 20;
-        //}
-        // if(!this.gameOver){
-        //     this.displayTimeRemaining();
-        // }
+      
         if(!this.gameOver){
             this.updateTimer();
         }
@@ -2558,23 +2494,7 @@ class Level1 extends Phaser.Scene {
 
 
     }
-    // displayTimeRemaining() {
-        
-    //     var time = Math.floor(this.totalElapsedSeconds());
-    //     var timeLeft = this.timeLimit - time;
     
-    //     // detect when countdown is over
-    //     if (timeLeft <= 0) {
-    //         timeLeft = 0;
-    //         this.timeOver = true;
-    //     }
-    
-    //     var sec = Math.floor(timeLeft);
-    
-        
-        
-    //     this.timeText.text = sec;
-    // }
     checkCollision(rocket, ship) {
         // simple AABB checking
         
